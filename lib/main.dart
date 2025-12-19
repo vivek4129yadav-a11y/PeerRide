@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:p2p_ride/login.dart';
+import 'package:provider/provider.dart';
+import 'core/app_theme.dart';
+import 'providers/ride_provider.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => RideProvider())],
+      child: const P2PRideApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class P2PRideApp extends StatelessWidget {
+  const P2PRideApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'P2P Ride Solution',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const LoginPage(),
+      title: 'PeerPool',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.darkTheme,
+      home: const HomeScreen(),
     );
   }
 }
